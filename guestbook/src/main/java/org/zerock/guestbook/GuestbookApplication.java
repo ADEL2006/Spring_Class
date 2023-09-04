@@ -19,7 +19,7 @@ public class GuestbookApplication {
 		Arrays.stream(beanDefinitionNames).forEach(bean -> {
 			System.out.println(bean);
 		});
-		
+
 		School school = applicationContext.getBean
 				("school", School.class);
 		System.out.println(school);
