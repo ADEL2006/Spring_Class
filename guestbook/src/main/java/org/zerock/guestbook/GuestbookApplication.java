@@ -23,6 +23,9 @@ public class GuestbookApplication {
 		School school = applicationContext.getBean
 				("school", School.class);
 		System.out.println(school);
+
+		School school1 = new School();
+		System.out.println(school1);
 	}
 
 }
