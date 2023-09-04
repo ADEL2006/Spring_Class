@@ -21,11 +21,11 @@ public class GuestbookApplication {
 		});
 
 		School school = applicationContext.getBean
-				("school", School.class);
+				("sch1", School.class);
+		School school2 = applicationContext.getBean
+				("sch2", School.class);
 		System.out.println(school);
-
-		School school1 = new School();
-		System.out.println(school1);
+		System.out.println(school2);
 	}
 
 }
