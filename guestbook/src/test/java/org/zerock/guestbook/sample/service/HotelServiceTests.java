@@ -4,20 +4,19 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.Primary;
-import org.zerock.guestbook.sample.sevice.HotelService;
+import org.zerock.guestbook.sample.service.HotelService;
+
 
 @SpringBootTest
-public class HotelServiceTests {
-
-    @Qualifier("hotelServiceImpl")
+class HotelServiceTests {
     @Autowired
-    private HotelService hotelservice;
-    
+    private HotelService hotelService;
+
     @Test
     void test() {
-        System.out.println("===========");
-        System.out.println(hotelservice);
-        System.out.println("===========");
+        System.out.println("============");
+        System.out.println(hotelService);
+        System.out.println("============");
     }
+
 }

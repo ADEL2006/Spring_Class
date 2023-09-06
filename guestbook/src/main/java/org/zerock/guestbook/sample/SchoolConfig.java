@@ -5,14 +5,11 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class SchoolConfig {
-
-    @Bean(name = "sch1")
+    @Bean
     public School school() {
         return new School();
     }
 
-    @Bean(name = "sch2")
-    public School school2() {
-        return new School();
-    }
 }
+
+

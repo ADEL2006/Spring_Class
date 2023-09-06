@@ -12,15 +12,16 @@ import java.util.Arrays;
 public class GuestbookApplication {
 	public static void main(String[] args) {
 
-		ConfigurableApplicationContext applicationContext =
-			SpringApplication.run(GuestbookApplication.class, args);
+		ConfigurableApplicationContext applicationContext = SpringApplication.run(GuestbookApplication.class, args);
 
-		String[] beanDefinitionNames = applicationContext
-				.getBeanDefinitionNames();
+		String[] beanDefinitionNames = applicationContext.getBeanDefinitionNames();
 		Arrays.stream(beanDefinitionNames).forEach(bean -> {
 			System.out.println(bean);
 		});
 
-	}
+		Restaurant restaurant = applicationContext.getBean("restaurant", Restaurant.class);
+		System.out.println(restaurant);
 
+
+	}
 }
