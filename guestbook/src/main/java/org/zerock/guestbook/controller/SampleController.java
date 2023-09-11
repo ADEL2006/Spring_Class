@@ -52,7 +52,7 @@ public class SampleController {
     public void ex07(
             @RequestParam("name") String name,
             @RequestParam("age") int age
-            ) {
+    ) {
         log.info(".............ex07 name: {}, age: {}", name, age);
     }
 
@@ -60,6 +60,13 @@ public class SampleController {
     @GetMapping("/ex08")
     public void ex08(SampleDTO sampleDTO){
         log.info(".............ex08: {}", sampleDTO);
+    }
+
+    @PostMapping("/ex09")
+    public void ex09(
+            @RequestBody SampleDTO sampleDTO
+    ){
+        log.info(".............ex09: {}", sampleDTO);
     }
 
 }
