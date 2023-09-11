@@ -3,6 +3,7 @@ package org.zerock.guestbook.controller;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
+import org.zerock.guestbook.dto.SampleDTO;
 
 // localhost:8080/sample
 @RestController // @Controller + @ResponseBody
@@ -53,6 +54,12 @@ public class SampleController {
             @RequestParam("age") int age
             ) {
         log.info(".............ex07 name: {}, age: {}", name, age);
+    }
+
+// /sample/ex08?name=kim&age=20
+    @GetMapping("/ex08")
+    public void ex08(SampleDTO sampleDTO){
+        log.info(".............ex08: {}", sampleDTO);
     }
 
 }
