@@ -28,8 +28,8 @@ public class MemberController {
         userMap.put("5", new Member("5", "홍길동5"));
     }
 
-@PostMapping("")
-@ResponseStatus(HttpStatus.CREATED)
+    @PostMapping("")
+    @ResponseStatus(HttpStatus.CREATED)
     public void register(@RequestBody Member member) {
         userMap.put(member.getId(), member);
     }
@@ -48,9 +48,31 @@ public class MemberController {
 
     @GetMapping("/duplicate/id")
     public ResponseEntity duplicate(
-            // @PathVariable("id") String id
             @RequestParam("id") String id
     ){
         return userMap.containsKey(id) ? ResponseEntity.status(HttpStatus.CONFLICT).build() : ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/duplicate/{id}")
+    public ResponseEntity duplicate2(
+            @PathVariable("id") String id
+    ){
+        return userMap.containsKey(id) ? ResponseEntity.status(HttpStatus.CONFLICT).build() : ResponseEntity.ok().build();
+    }
+
+    @PutMapping
+    public ResponseEntity<Member> modify(
+            @RequestBody Member member
+    ){
+        Member uptMember = userMap.get(member.getId());
+        uptMember.setName(member.getName());
+        return ResponseEntity.ok(uptMember);
+    }
+
+    @DeleteMapping("/{id}")
+    public void remove(
+            @PathVariable("id") String id
+    ){
+        userMap.remove(id);
     }
 }
