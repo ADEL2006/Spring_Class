@@ -49,34 +49,41 @@ public class SampleController {
         log.info(".............ex06 id : {}, name : {}", id, name);
     }
 
-// GET localhost:8080/sample/ex07?name=kim&id=test&age=20
+    // GET localhost:8080/sample/ex07
+// ?name=kim&age=20
     @GetMapping("/ex07")
     public void ex07(
             @RequestParam("name") String name,
-            @RequestParam("age") int age
+            @RequestParam(
+                    value = "age",
+                    required = false,
+                    defaultValue = "20"
+            ) int age
     ) {
-        log.info(".............ex07 name: {}, age: {}", name, age);
+        log.info(".............ex07 name : {}, age : {}", name, age);
     }
 
-// /sample/ex08?name=kim&age=20
+    // /sample/ex08?name=kim&age=20
     @GetMapping("/ex08")
-    public void ex08(SampleDTO sampleDTO){
-        log.info(".............ex08: {}", sampleDTO);
+    public void ex08(SampleDTO sampleDTO) {
+        log.info(".......... ex08 : {}", sampleDTO);
     }
 
     @PostMapping("/ex09")
     @ResponseStatus(HttpStatus.CREATED)
     public void ex09(
             @RequestBody SampleDTO sampleDTO
-    ){
-        log.info(".............ex09: {}", sampleDTO);
+    ) {
+        log.info(".......... ex09 : {}", sampleDTO);
     }
-
     @PutMapping("/ex10")
     public ResponseEntity<SampleDTO> ex10(
-            @RequestBody SampleDTO sampleDTO
+     @RequestBody SampleDTO sampleDTO
     ){
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(sampleDTO);
+return ResponseEntity.status(HttpStatus.NOT_FOUND).body(sampleDTO);
+//return ResponseEntity.ok(sampleDTO);
+
     }
+
 
 }
