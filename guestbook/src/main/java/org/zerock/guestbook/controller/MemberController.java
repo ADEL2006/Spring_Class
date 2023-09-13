@@ -3,13 +3,13 @@ package org.zerock.guestbook.controller;
 import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.zerock.guestbook.dto.Member;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/member")
@@ -31,6 +31,26 @@ public class MemberController {
 @PostMapping("")
 @ResponseStatus(HttpStatus.CREATED)
     public void register(@RequestBody Member member) {
-        userMap.put(member.getId(), member.getName())
+        userMap.put(member.getId(), member);
+    }
+
+    @GetMapping("/{id}")
+    public Member get(
+            @PathVariable("id") String id
+    ){
+        return userMap.get(id);
+    }
+
+    @GetMapping("/all")
+    public List<Member> getAll() {
+            return userMap.values().stream().collect(Collectors.toList());
+    }
+
+    @GetMapping("/duplicate/id")
+    public ResponseEntity duplicate(
+            // @PathVariable("id") String id
+            @RequestParam("id") String id
+    ){
+        return userMap.containsKey(id) ? ResponseEntity.status(HttpStatus.CONFLICT).build() : ResponseEntity.ok().build();
     }
 }
