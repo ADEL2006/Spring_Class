@@ -43,4 +43,13 @@ class MemoRepositoryTests {
                 .build();
         memoRepository.save(memoEntity);
     }
+
+    @Test
+    void testDelete() {
+        Long mno = 100L;
+        MemoEntity memoEntity = MemoEntity.builder()
+                .mno(100L)
+                .build();
+        memoRepository.delete(memoEntity);
+    }
 }
