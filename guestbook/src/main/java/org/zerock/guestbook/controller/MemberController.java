@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 import org.zerock.guestbook.dto.Member;
 
 import java.util.*;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 @RestController
@@ -19,7 +18,7 @@ public class MemberController {
 
     @PostConstruct
     public void init() {
-        log.info(".............init()");
+        log.info("............... init()");
         userMap = new HashMap<>();
         userMap.put("1", new Member("1", "홍길동1"));
         userMap.put("2", new Member("2", "홍길동2"));
@@ -28,51 +27,72 @@ public class MemberController {
         userMap.put("5", new Member("5", "홍길동5"));
     }
 
+    // {
+    //      "id" : "6",
+    //      "name" : "홍길동6"
+    // }
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
-    public void register(@RequestBody Member member) {
-        userMap.put(member.getId(), member);
+    public void register(
+            @RequestBody Member member
+    ) {
+        userMap.put(
+                member.getId(),
+                member
+        );
     }
 
+    // GET : localhost:8080/member/3
     @GetMapping("/{id}")
     public Member get(
             @PathVariable("id") String id
-    ){
+    ) {
         return userMap.get(id);
     }
 
     @GetMapping("/all")
     public List<Member> getAll() {
-            return userMap.values().stream().collect(Collectors.toList());
+        return userMap
+                .values()
+                .stream()
+                .collect(Collectors.toList());
     }
 
+    //  localhost:8080/member/duplicate/id?id=6
     @GetMapping("/duplicate/id")
     public ResponseEntity duplicate(
             @RequestParam("id") String id
-    ){
-        return userMap.containsKey(id) ? ResponseEntity.status(HttpStatus.CONFLICT).build() : ResponseEntity.ok().build();
+    ) {
+        return userMap.containsKey(id)
+                ? ResponseEntity.status(HttpStatus.CONFLICT).build()
+                : ResponseEntity.ok().build();
     }
 
     @GetMapping("/duplicate/{id}")
     public ResponseEntity duplicate2(
             @PathVariable("id") String id
-    ){
-        return userMap.containsKey(id) ? ResponseEntity.status(HttpStatus.CONFLICT).build() : ResponseEntity.ok().build();
+    ) {
+        return userMap.containsKey(id)
+                ? ResponseEntity.status(HttpStatus.CONFLICT).build()
+                : ResponseEntity.ok().build();
     }
 
-    @PutMapping
+    @PutMapping("")
     public ResponseEntity<Member> modify(
             @RequestBody Member member
-    ){
+    ) {
         Member uptMember = userMap.get(member.getId());
         uptMember.setName(member.getName());
         return ResponseEntity.ok(uptMember);
     }
 
+
     @DeleteMapping("/{id}")
     public void remove(
             @PathVariable("id") String id
-    ){
+    ) {
         userMap.remove(id);
     }
+
+
 }
