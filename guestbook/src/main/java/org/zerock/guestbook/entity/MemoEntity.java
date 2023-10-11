@@ -1,9 +1,15 @@
 package org.zerock.guestbook.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "tbl_memo")
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class MemoEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
