@@ -118,6 +118,11 @@ class MemoRepositoryTests {
         if(result.isPresent()) {
             System.out.println(result.get());
         }
+    }
 
+    @Test
+    void textQueryMethod3() {
+        memoRepository.updateMemoText(2L,
+                "UPDATE ......");
     }
 }

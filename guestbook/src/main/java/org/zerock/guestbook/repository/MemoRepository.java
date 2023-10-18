@@ -12,6 +12,8 @@ import java.util.Optional;
 
 public interface MemoRepository extends JpaRepository<MemoEntity, Long> {
 
+    @Transactional
+    @Modifying
     @Query("UPDATE MemoEntity m " +
             "SET m.memoText=:memoText " +
             "WHERE m.mno=:mno")
