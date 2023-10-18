@@ -125,4 +125,16 @@ class MemoRepositoryTests {
         memoRepository.updateMemoText(2L,
                 "UPDATE ......");
     }
+
+    @Test
+    void testQueryMethod4() {
+        Long mno = 0L;
+        Pageable pageable = PageRequest.of
+                (0, 10);
+        Page<MemoEntity> result = memoRepository
+                .getListWithQuery(mno, pageable);
+        result.get().forEach(memoEntity -> {
+            System.out.println(memoEntity);
+        });
+    }
 }
