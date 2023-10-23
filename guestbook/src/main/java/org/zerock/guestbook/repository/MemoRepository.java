@@ -14,7 +14,7 @@ import java.util.Optional;
 
 public interface MemoRepository extends JpaRepository<MemoEntity, Long> {
 
-    @Query("SELECT m " +
+    @Query("SELECT m.mno, m.memoText, CURRENT_DATE " +
             "FROM MemoEntity m") // JPQL
     List<Object[]> getList();
 
