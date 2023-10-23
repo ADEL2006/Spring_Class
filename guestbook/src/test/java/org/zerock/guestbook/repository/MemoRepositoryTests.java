@@ -9,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.zerock.guestbook.entity.MemoEntity;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.IntStream;
@@ -132,6 +133,14 @@ class MemoRepositoryTests {
         Page<MemoEntity> result = memoRepository.getListWithQuery(mno, pageable);
         result.get().forEach(memoEntity -> {
             System.out.println(memoEntity);
+        });
+    }
+
+    @Test
+    void testQueryMethod5() {
+        List<Object[]> result = memoRepository.getList();
+        result.forEach(objects -> {
+           System.out.println(Arrays.toString(objects));
         });
     }
 }
