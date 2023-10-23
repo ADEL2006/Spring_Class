@@ -105,34 +105,31 @@ class MemoRepositoryTests {
 
     @Test
     public void testQueryMethod() {
-     List<MemoEntity> result = memoRepository.findByMnoBetweenOrderByMnoDesc(10L, 30L);
-     result.forEach(memoEntity -> {
-         System.out.println(memoEntity);
-     });
+        List<MemoEntity> result = memoRepository.findByMnoBetweenOrderByMnoDesc(10L, 30L);
+        result.forEach(memoEntity -> {
+            System.out.println(memoEntity);
+        });
     }
 
     @Test
     void testQueryMethod2() {
-        Long mno = 50L;
+        Long mno = 150L;
         Optional<MemoEntity> result = memoRepository.findByMno(mno);
-        if(result.isPresent()) {
+        if (result.isPresent()) {
             System.out.println(result.get());
         }
     }
 
     @Test
-    void textQueryMethod3() {
-        memoRepository.updateMemoText(2L,
-                "UPDATE ......");
+    void testQueryMethod3() {
+        memoRepository.updateMemoText(2L, "UPDATE ......");
     }
 
     @Test
     void testQueryMethod4() {
         Long mno = 0L;
-        Pageable pageable = PageRequest.of
-                (0, 10);
-        Page<MemoEntity> result = memoRepository
-                .getListWithQuery(mno, pageable);
+        Pageable pageable = PageRequest.of(1, 10);
+        Page<MemoEntity> result = memoRepository.getListWithQuery(mno, pageable);
         result.get().forEach(memoEntity -> {
             System.out.println(memoEntity);
         });
