@@ -143,4 +143,10 @@ class MemoRepositoryTests {
            System.out.println(Arrays.toString(objects));
         });
     }
+
+    @Test
+    void testQueryMethod6() {
+        List<Object[]> result =
+                memoRepository.getNativeResult();
+    }
 }

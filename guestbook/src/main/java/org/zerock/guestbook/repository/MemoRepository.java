@@ -14,6 +14,9 @@ import java.util.Optional;
 
 public interface MemoRepository extends JpaRepository<MemoEntity, Long> {
 
+    @Query(value="SELECT * FROM tbl_memo", nativeQuery = true)
+    List<Object[]> getNativeResult();
+
     @Query("SELECT m.mno, m.memoText, CURRENT_DATE " +
             "FROM MemoEntity m") // JPQL
     List<Object[]> getList();
