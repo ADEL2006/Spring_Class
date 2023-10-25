@@ -3,12 +3,14 @@ package org.zerock.guestbook;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.zerock.guestbook.sample.Restaurant;
 import org.zerock.guestbook.sample.School;
 
 import java.util.Arrays;
 
 @SpringBootApplication
+@EnableJpaAuditing
 public class GuestbookApplication {
 	public static void main(String[] args) {
 

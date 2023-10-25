@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.zerock.guestbook.entity.GuestbookEntity;
 
+import java.util.stream.IntStream;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
@@ -24,4 +26,17 @@ class GuestbookRepositoryTests {
         guestbookRepository.save(guestbookEntity);
     }
 
+    @Test
+    void testInsertDummies() {
+        IntStream
+                .rangeClosed(1, 300)
+                .forEach(i -> {
+                    GuestbookEntity guestbookEntity = GuestbookEntity.builder()
+                            .title("title...." + i)
+                            .content("content...." + i)
+                            .writer("user" + (i % 10))
+                            .build();
+                    guestbookRepository.save(guestbookEntity);
+                });
+    }
 }

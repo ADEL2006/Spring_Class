@@ -10,7 +10,7 @@ import lombok.*;
 @Builder
 @Getter
 @ToString
-public class GuestbookEntity {
+public class GuestbookEntity extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long gno;
