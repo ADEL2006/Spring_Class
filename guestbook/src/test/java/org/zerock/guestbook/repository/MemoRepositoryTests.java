@@ -138,15 +138,20 @@ class MemoRepositoryTests {
 
     @Test
     void testQueryMethod5() {
+//        List ( Object[] )
+//result.get(0) => Object[],
+// => [0] mno, [1] memoText, [2] CURRENT_DATE
+//result.get(1) => Object[]
+//result.get(2) => Object[]
         List<Object[]> result = memoRepository.getList();
-        result.forEach(objects -> {
-           System.out.println(Arrays.toString(objects));
-        });
+result.forEach(objects ->{
+System.out.println(Arrays.toString(objects));
+} );
+
     }
 
     @Test
     void testQueryMethod6() {
-        List<Object[]> result =
-                memoRepository.getNativeResult();
+        List<Object[]> result = memoRepository.getNativeResult();
     }
 }
