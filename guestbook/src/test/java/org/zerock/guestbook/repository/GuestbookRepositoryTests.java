@@ -1,8 +1,11 @@
 package org.zerock.guestbook.repository;
 
+import jakarta.persistence.Column;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Commit;
+import org.springframework.transaction.annotation.Transactional;
 import org.zerock.guestbook.entity.GuestbookEntity;
 
 import java.util.Optional;
@@ -42,6 +45,8 @@ class GuestbookRepositoryTests {
     }
 
     @Test
+    @Transactional
+    @Commit
     void testUpdate() {
         Long gno = 300L;
         Optional<GuestbookEntity> result =
