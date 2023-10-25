@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.zerock.guestbook.entity.GuestbookEntity;
 
+import java.util.Optional;
 import java.util.stream.IntStream;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -38,5 +39,19 @@ class GuestbookRepositoryTests {
                             .build();
                     guestbookRepository.save(guestbookEntity);
                 });
+    }
+
+    @Test
+    void testUpdate() {
+        Long gno = 300L;
+        Optional<GuestbookEntity> result =
+                guestbookRepository.findById(gno);
+        if(result.isPresent()){
+            GuestbookEntity guestbookEntity =
+                    result.get();
+            guestbookEntity.changeTitle("update...");
+            guestbookEntity.changeContent("update");
+            guestbookRepository.save(guestbookEntity);
+        }
     }
 }
