@@ -10,7 +10,7 @@ import lombok.*;
 @Builder
 @Getter
 @ToString
-public class GuestbookEntity extends BaseEntity{
+public class GuestbookEntity extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long gno;
@@ -24,11 +24,11 @@ public class GuestbookEntity extends BaseEntity{
     @Column(length = 50, nullable = false)
     private String writer;
 
-    public void changeTitle(String title) {
+    public void changeTitle(String title){
         this.title = title;
     }
-
-    public void changeContent(String content) {
+    public void changeContent(String content){
         this.content = content;
     }
+
 }

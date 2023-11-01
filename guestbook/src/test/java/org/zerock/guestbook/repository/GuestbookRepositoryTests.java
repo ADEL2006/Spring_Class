@@ -1,6 +1,5 @@
 package org.zerock.guestbook.repository;
 
-import jakarta.persistence.Column;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -32,6 +31,7 @@ class GuestbookRepositoryTests {
 
     @Test
     void testInsertDummies() {
+
         IntStream
                 .rangeClosed(1, 300)
                 .forEach(i -> {
@@ -42,21 +42,21 @@ class GuestbookRepositoryTests {
                             .build();
                     guestbookRepository.save(guestbookEntity);
                 });
+
     }
 
     @Test
     @Transactional
     @Commit
     void testUpdate() {
-        Long gno = 300L;
-        Optional<GuestbookEntity> result =
-                guestbookRepository.findById(gno);
+        Long gno = 299L;
+        Optional<GuestbookEntity> result = guestbookRepository.findById(gno);
         if(result.isPresent()){
-            GuestbookEntity guestbookEntity =
-                    result.get();
-            guestbookEntity.changeTitle("update...");
+            GuestbookEntity guestbookEntity = result.get();
+            guestbookEntity.changeTitle("update ...");
             guestbookEntity.changeContent("update");
             guestbookRepository.save(guestbookEntity);
         }
     }
+
 }

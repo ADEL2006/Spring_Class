@@ -10,13 +10,15 @@ import org.zerock.guestbook.repository.GuestbookRepository;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-public class GuestbookServicelmpl implements GuestbookService{
-    private GuestbookRepository guestbookRepository;
+public class GuestbookServiceImpl implements GuestbookService {
+    private final GuestbookRepository guestbookRepository;
 
     @Override
     public Long register(GuestbookDTO dto) {
-        log.info("DTO: {}", dto);
+        log.info("DTO : {}", dto);
         GuestbookEntity guestbookEntity = dtoToEntity(dto);
+        guestbookRepository.save(guestbookEntity);
         return guestbookEntity.getGno();
     }
+
 }
