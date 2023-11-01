@@ -20,4 +20,32 @@ class GuestbookServiceTests {
                 .build();
         guestbookService.register(guestbookDTO);
     }
+
+    @Test
+    void testRead() {
+        Long gno = 302L;
+        GuestbookDTO guestbookDTO =
+                guestbookService.read(gno);
+
+        System.out.println("====================");
+        System.out.println(guestbookDTO);
+        System.out.println("====================");
+    }
+
+    @Test
+    void testModify() {
+        GuestbookDTO guestbookDTO =
+                GuestbookDTO.builder()
+                        .gno(302L)
+                        .title("Update ...... ")
+                        .content("Update ....... ")
+                        .build();
+        guestbookService.modify(guestbookDTO);
+    }
+
+    @Test
+    void testRemove() {
+        Long gno = 302L;
+        guestbookService.remove(gno);
+    }
 }

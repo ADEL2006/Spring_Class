@@ -10,6 +10,8 @@ public interface GuestbookService {
     // R
     GuestbookDTO read(Long gno);
 
+    void modify(GuestbookDTO dto);
+    void remove(Long gno);
 
     default GuestbookEntity dtoToEntity(GuestbookDTO dto){
         return GuestbookEntity.builder()

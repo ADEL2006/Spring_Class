@@ -27,11 +27,28 @@ public class GuestbookServiceImpl implements GuestbookService {
     public GuestbookDTO read(Long gno) {
         Optional<GuestbookEntity> result =
         guestbookRepository.findById(gno);
-        if(result.isPresent()) {
-            GuestbookEntity guestbookEntity =
-            result.get();
+        return (result.isPresent()) ? entityToDTO(result.get()) : null;
+//        if(result.isPresent()) {
+//            GuestbookEntity guestbookEntity =
+//            result.get();
+//            return entityToDTO(guestbookEntity);
+//        }
+    }
+
+    @Override
+    public void modify(GuestbookDTO dto) {
+        Optional<GuestbookEntity> result = guestbookRepository.findById(dto.getGno());
+        if (result.isPresent()) {
+            GuestbookEntity guestbookEntity = result.get();
+            guestbookEntity.changeTitle(dto.getTitle());
+            guestbookEntity.changeContent(dto.getContent());
+            guestbookRepository.save(guestbookEntity);
         }
-        return null;
+    }
+
+    @Override
+    public void remove(Long gno){
+        guestbookRepository.deleteById(gno);
     }
 
 }
