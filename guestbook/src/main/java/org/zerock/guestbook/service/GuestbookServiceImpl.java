@@ -2,12 +2,18 @@ package org.zerock.guestbook.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.zerock.guestbook.dto.GuestbookDTO;
+import org.zerock.guestbook.dto.PageRequestDTO;
+import org.zerock.guestbook.dto.PageResultDTO;
 import org.zerock.guestbook.entity.GuestbookEntity;
 import org.zerock.guestbook.repository.GuestbookRepository;
 
 import java.util.Optional;
+import java.util.function.Function;
 
 @Service
 @RequiredArgsConstructor
@@ -30,6 +36,15 @@ public class GuestbookServiceImpl implements GuestbookService {
         return (result.isPresent())
                 ? entityToDTO(result.get())
                 : null;
+    }
+
+    @Override
+    public PageResultDTO<GuestbookDTO, GuestbookEntity> getList(PageRequestDTO pageRequestDTO) {
+        Pageable pageable = pageRequestDTO.getPageable(Sort.by("gno").descending());
+        Page<GuestbookEntity> result = guestbookRepository.findAll(pageable);
+        Function<GuestbookEntity, GuestbookDTO> fn;
+        fn = (entity -> entityToDTO(entity));
+        return new PageResultDTO(result, fn);
     }
 
     @Override

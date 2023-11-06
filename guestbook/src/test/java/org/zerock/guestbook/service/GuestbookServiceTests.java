@@ -4,6 +4,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.zerock.guestbook.dto.GuestbookDTO;
+import org.zerock.guestbook.dto.PageRequestDTO;
+import org.zerock.guestbook.dto.PageResultDTO;
+import org.zerock.guestbook.entity.GuestbookEntity;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -49,4 +52,15 @@ class GuestbookServiceTests {
         guestbookService.remove(gno);
     }
 
+    @Test
+    void testGetList() {
+        PageRequestDTO pageRequestDTO = new PageRequestDTO();
+        PageResultDTO<GuestbookDTO, GuestbookEntity> result = guestbookService.getList(pageRequestDTO);
+
+        System.out.println(result);
+        System.out.println("====================");
+        result.getDtoList().forEach(dto -> {
+            System.out.println(dto);
+        });
+    }
 }
