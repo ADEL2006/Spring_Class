@@ -6,11 +6,11 @@ import org.zerock.guestbook.entity.GuestbookEntity;
 public interface GuestbookService {
     // C
     Long register(GuestbookDTO dto);
-
     // R
     GuestbookDTO read(Long gno);
-
+    // U
     void modify(GuestbookDTO dto);
+    // D
     void remove(Long gno);
 
     default GuestbookEntity dtoToEntity(GuestbookDTO dto){

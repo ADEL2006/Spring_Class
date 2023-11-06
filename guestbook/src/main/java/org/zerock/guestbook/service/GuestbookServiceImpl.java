@@ -13,6 +13,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 @Slf4j
 public class GuestbookServiceImpl implements GuestbookService {
+
     private final GuestbookRepository guestbookRepository;
 
     @Override
@@ -25,30 +26,31 @@ public class GuestbookServiceImpl implements GuestbookService {
 
     @Override
     public GuestbookDTO read(Long gno) {
-        Optional<GuestbookEntity> result =
-        guestbookRepository.findById(gno);
-        return (result.isPresent()) ? entityToDTO(result.get()) : null;
-//        if(result.isPresent()) {
-//            GuestbookEntity guestbookEntity =
-//            result.get();
-//            return entityToDTO(guestbookEntity);
-//        }
+        Optional<GuestbookEntity> result = guestbookRepository.findById(gno);
+        return (result.isPresent())
+                ? entityToDTO(result.get())
+                : null;
     }
 
     @Override
     public void modify(GuestbookDTO dto) {
-        Optional<GuestbookEntity> result = guestbookRepository.findById(dto.getGno());
+        Long gno = dto.getGno();
+        Optional<GuestbookEntity> result = guestbookRepository.findById(gno);
         if (result.isPresent()) {
             GuestbookEntity guestbookEntity = result.get();
-            guestbookEntity.changeTitle(dto.getTitle());
-            guestbookEntity.changeContent(dto.getContent());
+            guestbookEntity
+                    .changeTitle(dto.getTitle());
+            guestbookEntity
+                    .changeContent(dto.getContent());
             guestbookRepository.save(guestbookEntity);
         }
+
     }
 
     @Override
-    public void remove(Long gno){
+    public void remove(Long gno) {
         guestbookRepository.deleteById(gno);
     }
+
 
 }

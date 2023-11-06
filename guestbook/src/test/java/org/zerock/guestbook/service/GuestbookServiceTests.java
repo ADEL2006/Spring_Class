@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.zerock.guestbook.dto.GuestbookDTO;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 @SpringBootTest
 class GuestbookServiceTests {
     @Autowired
@@ -12,21 +14,19 @@ class GuestbookServiceTests {
 
     @Test
     void testRegister() {
-        GuestbookDTO guestbookDTO =
-        GuestbookDTO.builder()
-                .title("Title.......")
-                .content("Content.......")
-                .writer("Test.......")
+        GuestbookDTO guestbookDTO = GuestbookDTO.builder()
+                .title("Title .......")
+                .content("Content ........")
+                .writer("Test .......")
                 .build();
         guestbookService.register(guestbookDTO);
     }
 
     @Test
     void testRead() {
-        Long gno = 302L;
-        GuestbookDTO guestbookDTO =
-                guestbookService.read(gno);
-
+        Long gno = 303L;
+        GuestbookDTO guestbookDTO
+                = guestbookService.read(gno);
         System.out.println("====================");
         System.out.println(guestbookDTO);
         System.out.println("====================");
@@ -36,10 +36,10 @@ class GuestbookServiceTests {
     void testModify() {
         GuestbookDTO guestbookDTO =
                 GuestbookDTO.builder()
-                        .gno(302L)
-                        .title("Update ...... ")
-                        .content("Update ....... ")
-                        .build();
+                .gno(302L)
+                .title("Update ...... ")
+                .content("Update ....... ")
+                .build();
         guestbookService.modify(guestbookDTO);
     }
 
@@ -48,4 +48,5 @@ class GuestbookServiceTests {
         Long gno = 302L;
         guestbookService.remove(gno);
     }
+
 }
