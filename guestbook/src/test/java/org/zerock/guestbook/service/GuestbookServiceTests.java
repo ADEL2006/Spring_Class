@@ -54,13 +54,19 @@ class GuestbookServiceTests {
 
     @Test
     void testGetList() {
-        PageRequestDTO pageRequestDTO = new PageRequestDTO();
+        PageRequestDTO pageRequestDTO
+                = new PageRequestDTO();
+        pageRequestDTO.setPage(1);
+        pageRequestDTO.setSize(100);
         PageResultDTO<GuestbookDTO, GuestbookEntity> result = guestbookService.getList(pageRequestDTO);
 
         System.out.println(result);
-        System.out.println("====================");
+        System.out.println("=========================================================");
         result.getDtoList().forEach(dto -> {
             System.out.println(dto);
         });
+
     }
+
+
 }

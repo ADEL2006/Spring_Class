@@ -1,6 +1,5 @@
 package org.zerock.guestbook.service;
 
-import org.springframework.data.domain.Page;
 import org.zerock.guestbook.dto.GuestbookDTO;
 import org.zerock.guestbook.dto.PageRequestDTO;
 import org.zerock.guestbook.dto.PageResultDTO;
@@ -12,8 +11,7 @@ public interface GuestbookService {
     // R
     GuestbookDTO read(Long gno);
 
-    PageResultDTO<GuestbookDTO, GuestbookEntity>
-    getList(PageRequestDTO pageRequestDTO);
+    PageResultDTO<GuestbookDTO, GuestbookEntity> getList(PageRequestDTO pageRequestDTO);
 
     // U
     void modify(GuestbookDTO dto);

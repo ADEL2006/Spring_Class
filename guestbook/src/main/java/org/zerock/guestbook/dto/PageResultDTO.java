@@ -1,6 +1,9 @@
 package org.zerock.guestbook.dto;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -23,7 +26,8 @@ public class PageResultDTO<DTO, EN> {
             Page<EN> result,
             Function<EN, DTO> fn
     ) {
-        dtoList = result.stream().map(fn).collect(Collectors.toList());
+        dtoList
+                = result.stream().map(fn).collect(Collectors.toList());
         totalPage = result.getTotalPages();
         makePageList(result.getPageable());
     }
@@ -32,7 +36,7 @@ public class PageResultDTO<DTO, EN> {
         this.page = pageable.getPageNumber() + 1;
         this.size = pageable.getPageSize();
         int tempEnd
-                = (int) (Math.ceil(page / 10.0)) * 10;
+            = (int) (Math.ceil(page / 10.0)) * 10;
         start = tempEnd - 9;
         prev = start > 1;
         end = totalPage > tempEnd ? tempEnd : totalPage;
