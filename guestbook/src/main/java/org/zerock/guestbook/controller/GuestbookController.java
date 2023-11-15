@@ -54,10 +54,20 @@ public class GuestbookController {
     //PUT /guestbook
     @PutMapping("")
     public String modify(
-@RequestBody GuestbookDTO dto
+        @RequestBody GuestbookDTO dto
     ){
-
-        return "OK";
+        guestbookService.modify(dto);
+        return "PUT OK";
     }
+
+    // localhost:8080/guestbook/300
+    @DeleteMapping("/{gno}")
+    public String remove(
+            @PathVariable("gno") Long gno
+    ) {
+        guestbookService.remove(gno);
+        return "DELETE OK";
+    }
+
 
 }
