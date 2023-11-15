@@ -13,7 +13,6 @@ import java.util.Arrays;
 @EnableJpaAuditing
 public class GuestbookApplication {
 	public static void main(String[] args) {
-
 		ConfigurableApplicationContext applicationContext = SpringApplication.run(GuestbookApplication.class, args);
 
 //		String[] beanDefinitionNames = applicationContext.getBeanDefinitionNames();
