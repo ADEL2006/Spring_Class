@@ -24,7 +24,7 @@ public class QuerydslTests {
 
         jpaQueryFactory
                 .from(guestbookEntity)
-                .where()
+                .where();
 
 
 
