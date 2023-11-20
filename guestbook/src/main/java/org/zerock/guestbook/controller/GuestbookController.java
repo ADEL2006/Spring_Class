@@ -45,7 +45,7 @@ public class GuestbookController {
         return ResponseEntity.status(HttpStatus.OK).body(dto);
     }
 
-    // /list
+    // /guestbook/list
     @GetMapping("/list")
     public ResponseEntity<PageResultDTO> getList(PageRequestDTO pageRequestDTO) {
         return ResponseEntity.ok(guestbookService.getList(pageRequestDTO));
@@ -54,19 +54,19 @@ public class GuestbookController {
     //PUT /guestbook
     @PutMapping("")
     public String modify(
-        @RequestBody GuestbookDTO dto
-    ){
+            @RequestBody GuestbookDTO dto
+    ) {
         guestbookService.modify(dto);
-        return "PUT OK";
+        return "OK";
     }
 
     // localhost:8080/guestbook/300
     @DeleteMapping("/{gno}")
     public String remove(
-            @PathVariable("gno") Long gno
+    @PathVariable("gno") Long gno
     ) {
         guestbookService.remove(gno);
-        return "DELETE OK";
+        return "OK";
     }
 
 
