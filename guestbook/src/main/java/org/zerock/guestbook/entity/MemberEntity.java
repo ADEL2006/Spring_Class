@@ -23,4 +23,8 @@ public class MemberEntity {
 
     @Column(nullable = false)
     private String address;
+
+    public void changeName(String name) {
+        
+    }
 }
