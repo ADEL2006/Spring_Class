@@ -2,6 +2,7 @@ package org.zerock.guestbook.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.zerock.guestbook.dto.MemberDTO;
 import org.zerock.guestbook.entity.MemberEntity;
@@ -10,11 +11,11 @@ import org.zerock.guestbook.repository.MemberRepository;
 import java.util.Optional;
 
 @Service
-// @RequiredArgsConstructor
+//@RequiredArgsConstructor
 public class MemberServiceImpl implements MemberService {
-
     @Autowired
-    private MemberRepository memberRepository
+    private MemberRepository memberRepository;
+//    private final MemberRepository memberRepository;
 
     @Override
     public Long register(MemberDTO dto) {
@@ -25,9 +26,8 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public MemberDTO read(Long mno) {
-        Optional<MemberEntity> result =
-        memberRepository.findById(mno);
-        if(result.isPresent()) {
+        Optional<MemberEntity> result = memberRepository.findById(mno);
+        if(result.isPresent()){
             MemberEntity memberEntity = result.get();
             return entityToDTO(memberEntity);
         }
@@ -42,10 +42,6 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public void remove(Long mno) {
         memberRepository.deleteById(mno);
-
     }
 
-    public interface MemberService {
-
-    }
 }

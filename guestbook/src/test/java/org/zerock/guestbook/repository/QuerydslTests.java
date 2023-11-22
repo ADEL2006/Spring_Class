@@ -22,9 +22,9 @@ public class QuerydslTests {
         guestbookEntity.title.contains("1");
         guestbookEntity.gno.eq(1L);
 
-        jpaQueryFactory
-                .from(guestbookEntity)
-                .where();
+//        jpaQueryFactory
+//                .from(guestbookEntity)
+//                .where()
 
 
 

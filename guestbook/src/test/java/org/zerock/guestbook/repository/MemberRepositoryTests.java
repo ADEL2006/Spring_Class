@@ -17,13 +17,17 @@ class MemberRepositoryTests {
     @Test
     void testInsertDummies() {
         IntStream.rangeClosed(1, 9).forEach(i -> {
+
             MemberEntity memberEntity = MemberEntity.builder()
+                    .address("대구광역시 달성군 구지면")
                     .name("홍길동" + i)
                     .phone("010-1234-123" + i)
-                    .address("대구광역시 달성군 구지면")
                     .build();
             memberRepository.save(memberEntity);
+
+
         });
     }
+
 
 }
