@@ -24,7 +24,7 @@ public class MemberController {
 
     // C
     // localhost:8080/member/
-    @PostMapping("/")
+    @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
     public String register(@RequestBody MemberDTO dto) {
         memberService.register(dto);
@@ -40,7 +40,7 @@ public class MemberController {
     }
 
     // U
-    @PutMapping("/")
+    @PutMapping("")
     public String modify(@RequestBody MemberDTO dto) {
         memberService.modify(dto);
         return "UPDATE OK";
