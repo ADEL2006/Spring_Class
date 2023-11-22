@@ -37,4 +37,12 @@ public class MemberEntity {
         name = name;
     }
 
+    public void changePhone(String phone) {
+        this.phone = phone;
+    }
+
+    public void changeAddress(String address) {
+        this.address = address;
+    }
+
 }

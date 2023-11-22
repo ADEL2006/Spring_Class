@@ -36,7 +36,15 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public void modify(MemberDTO dto) {
-
+        Optional<MemberEntity> result =
+                memberRepository.findById(dto.getMno());
+        if(result.isPresent()) {
+            MemberEntity memberEntity = result.get();
+            memberEntity.changeName(dto.getName());
+            memberEntity.changePhone(dto.getPhone());
+            memberEntity.changeAddress(dto.getAddress());
+            memberRepository.save(memberEntity);
+        }
     }
 
     @Override
