@@ -2,11 +2,13 @@ package org.zerock.guestbook.repository;
 
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.Tuple;
+import com.querydsl.core.types.Projections;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.zerock.guestbook.dto.GuestbookDTO;
 import org.zerock.guestbook.entity.GuestbookEntity;
 import org.zerock.guestbook.entity.QGuestbookEntity;
 
@@ -70,4 +72,24 @@ public class QuerydslTests {
         });
     }
 
+    @Test
+    void testQuerydsl4() {
+        List<GuestbookDTO> result = jpaQueryFactory
+                .select(
+                        Projections.constructor(
+                                GuestbookDTO.class,
+                                guestbookEntity.gno,
+                                guestbookEntity.title,
+                                guestbookEntity.content,
+                                guestbookEntity.writer,
+                                guestbookEntity.regDate,
+                                guestbookEntity.modDate
+                        )
+                )
+                .from(guestbookEntity)
+                .fetch();
+        result.forEach(dto -> {
+            System.out.println(dto);
+        });
+    }
 }
