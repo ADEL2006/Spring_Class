@@ -1,6 +1,7 @@
 package org.zerock.guestbook.repository;
 
 import com.querydsl.core.BooleanBuilder;
+import com.querydsl.core.Tuple;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.junit.jupiter.api.Test;
@@ -59,11 +60,14 @@ public class QuerydslTests {
 
     @Test
     void testQuerydsl3() {
-        jpaQueryFactory
+        List<Tuple> result = jpaQueryFactory
                 .select(guestbookEntity.gno, guestbookEntity.title)
                 .from(guestbookEntity)
                 .fetch();
-        result.forEach
+        result.forEach(tuple -> {
+            System.out.println(tuple.get(1, String.class));
+            System.out.println(tuple.get(guestbookEntity.gno));
+        });
     }
 
 }
