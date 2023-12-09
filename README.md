@@ -1,5 +1,5 @@
 # Spring_Class
 
-Spring Practice, 
+Spring Practice, <br>
 Spring MidTest(OMG)
 Spring HighTest(Good)
